@@ -1,1 +1,1 @@
-Projeto Despesas Web
+Projeto Despesas Web - Jornada JS
