@@ -21,8 +21,8 @@ const CadDespesa = () => {
 
     const SalvarDados = async () => {
         try {
-            if (idUrl !== "add") {
-                await api.put("/despesa/" + idUrl, {
+            if (idUrl != "add") {
+                await api.put("/despesas/" + idUrl, {
                     valor: valor,
                     descricao: descricao,
                     categoria: categoria,
@@ -32,7 +32,7 @@ const CadDespesa = () => {
                 });
                 alert("Dados Editados com Sucesso!")
             } else {
-                await api.post("/despesa", {
+                await api.post("/despesas", {
                     descricao: descricao,
                     categoria: categoria,
                     forma: forma,
@@ -44,19 +44,19 @@ const CadDespesa = () => {
                 alert("Dados Salvos  com Sucesso!")
 
             }
+            navigte("/");
         } catch (error) {
 
             alert("Erro ao Salvar ou Editar os dados." + error);
             console.log(error);
         }
-        navigte("/");
     }
 
     const GetDadosDespesas = async (id) => {
         try {
             //faz GET na API...
 
-            const response = await api.get("/despesa/" + id);
+            const response = await api.get("/despesas" + id);
 
             setValor(response.data.valor);
             setDescricao(response.data.descricao);
@@ -71,20 +71,20 @@ const CadDespesa = () => {
     }
 
     useEffect(() => {
-        if (idUrl !== "add") {
+        if (idUrl != "add") {
             GetDadosDespesas(idUrl);
-        };
+        }
     }, []);
 
     return <>
-        <   Navbar />
+        <Navbar />
         <Sidebar />
         <div className="container-depesa-cad">
 
             <div className="box-despesa-cad">
 
                 {
-                    idUrl !== "add" ? <h1>Editar Despesa</h1> : <h1> Nova Despesa</h1>
+                    idUrl == "add" ? <h1>Nova Despesa</h1> : <h1> Editar Despesa</h1>
                 }
 
 

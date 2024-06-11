@@ -38,7 +38,7 @@ const Home = () => {
     const ListarDespesa = async (busca) => {
         try {
             //Acessar dados na API
-            const response = await api.get("/despesa", {
+            const response = await api.get("/despesas", {
                 params: {
                     filtro: busca
                 }
@@ -61,7 +61,7 @@ const Home = () => {
 
 
     const OpenDespesa = (id) => {
-        navigate("/despesa/" + id);
+        navigate("/despesas/" + id);
     }
 
     const DeleteDespesa = async (id) => {
@@ -73,7 +73,7 @@ const Home = () => {
                 buttons: [{
                     label: "Sim",
                     onClick: async () => {
-                        await api.delete("/despesa/" + id);
+                        await api.delete("/despesas/" + id);
                         ListarDespesa();
                     }
                 },
@@ -133,7 +133,7 @@ const Home = () => {
                                     <td>
                                         <div>
                                             <img className="icon-sm" src={desp.formaDetalhe.icon} alt="" />
-                                            <span className="ml-10">{desp.forma}</span>
+                                            <span style={{ visibility: "collapse" }} className="ml-10">{desp.forma}</span>
                                         </div>
                                     </td>
                                     <td className="text-right">R$ {Number(desp.valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
